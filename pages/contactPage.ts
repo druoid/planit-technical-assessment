@@ -39,21 +39,15 @@ export class ContactPage {
   }
 
   async verifyForenameInputMissingError() {
-    await expect(this.forenameInputMissingError).toContainText(
-      'Forename is required',
-    );
+    await expect(this.forenameInputMissingError).toContainText('Forename is required');
   }
 
   async verifyEmailInpuMissingError() {
-    await expect(this.emailInputMissingError).toContainText(
-      'Email is required',
-    );
+    await expect(this.emailInputMissingError).toContainText('Email is required');
   }
 
   async verifyMessageInputMissingError() {
-    await expect(this.messageInputMissingError).toContainText(
-      'Message is required',
-    );
+    await expect(this.messageInputMissingError).toContainText('Message is required');
   }
 
   async populateMandatoryFields() {

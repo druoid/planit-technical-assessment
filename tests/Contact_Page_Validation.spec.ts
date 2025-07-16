@@ -3,9 +3,7 @@ import { HomePage } from '../pages/homePage';
 import { ContactPage } from '../pages/contactPage';
 
 test.describe('Test contact page', () => {
-  test('Contact page - Verify error messages on incomplete form submission', async ({
-    page,
-  }) => {
+  test('Contact page - Verify error messages on incomplete form submission', async ({ page }) => {
     const homePage = new HomePage(page);
     const contactPage = new ContactPage(page);
 

@@ -24,58 +24,36 @@ export class CartPage {
     this.stuffedFrogSubTotal = page.locator('//table//tr[1]/td[4]');
     this.fluffyBunnySubTotal = page.locator('//table//tr[2]/td[4]');
     this.valentineBearSubTotal = page.locator('//table//tr[3]/td[4]');
-    this.total = page
-      .locator('//table//tr[1]/td[1]')
-      .filter({ hasText: 'Total: 116.9' });
+    this.total = page.locator('//table//tr[1]/td[1]').filter({ hasText: 'Total: 116.9' });
   }
 
   async verifySubtotalsAreCorrect() {
     const stuffedFrogPrice = (await this.stuffedFrogPrice.innerText()).slice(1);
     const stuffedFrogQuantity = await this.stuffedFrogQuantity.inputValue();
-    const stuffedFrogSubTotal = (
-      await this.stuffedFrogSubTotal.innerText()
-    ).slice(1);
+    const stuffedFrogSubTotal = (await this.stuffedFrogSubTotal.innerText()).slice(1);
     const stuffedFrogSubTotalCalculated =
       parseFloat(stuffedFrogPrice) * parseFloat(stuffedFrogQuantity);
-    await expect(stuffedFrogSubTotal).toContain(
-      stuffedFrogSubTotalCalculated.toString(),
-    );
+    await expect(stuffedFrogSubTotal).toContain(stuffedFrogSubTotalCalculated.toString());
 
     const fluffyBunnyPrice = (await this.fluffyBunnyPrice.innerText()).slice(1);
     const fluffyBunnyQuantity = await this.fluffyBunnyQuantity.inputValue();
-    const fluffyBunnySubTotal = (
-      await this.fluffyBunnySubTotal.innerText()
-    ).slice(1);
+    const fluffyBunnySubTotal = (await this.fluffyBunnySubTotal.innerText()).slice(1);
     const fluffyBunnySubTotalCalculated =
       parseFloat(fluffyBunnyPrice) * parseFloat(fluffyBunnyQuantity);
-    await expect(fluffyBunnySubTotal).toContain(
-      fluffyBunnySubTotalCalculated.toString(),
-    );
+    await expect(fluffyBunnySubTotal).toContain(fluffyBunnySubTotalCalculated.toString());
 
-    const valentineBearPrice = (
-      await this.valentineBearPrice.innerText()
-    ).slice(1);
+    const valentineBearPrice = (await this.valentineBearPrice.innerText()).slice(1);
     const valentineBearQuantity = await this.valentineBearQuantity.inputValue();
-    const valentineBearSubTotal = (
-      await this.valentineBearSubTotal.innerText()
-    ).slice(1);
+    const valentineBearSubTotal = (await this.valentineBearSubTotal.innerText()).slice(1);
     const valentineBearSubTotalCalculated =
       parseFloat(valentineBearPrice) * parseFloat(valentineBearQuantity);
-    await expect(valentineBearSubTotal).toContain(
-      valentineBearSubTotalCalculated.toString(),
-    );
+    await expect(valentineBearSubTotal).toContain(valentineBearSubTotalCalculated.toString());
   }
 
   async verifyPriceForEachProduct() {
-    await expect((await this.stuffedFrogPrice.innerText()).slice(1)).toContain(
-      '10.99',
-    );
-    await expect((await this.fluffyBunnyPrice.innerText()).slice(1)).toContain(
-      '9.99',
-    );
-    await expect(
-      (await this.valentineBearPrice.innerText()).slice(1),
-    ).toContain('14.99');
+    await expect((await this.stuffedFrogPrice.innerText()).slice(1)).toContain('10.99');
+    await expect((await this.fluffyBunnyPrice.innerText()).slice(1)).toContain('9.99');
+    await expect((await this.valentineBearPrice.innerText()).slice(1)).toContain('14.99');
   }
 
   async verifyTotal() {
@@ -93,9 +71,7 @@ export class CartPage {
     const fluffyBunnySubTotalCalculated =
       parseFloat(fluffyBunnyPrice) * parseFloat(fluffyBunnyQuantity);
 
-    const valentineBearPrice = (
-      await this.valentineBearPrice.innerText()
-    ).slice(1);
+    const valentineBearPrice = (await this.valentineBearPrice.innerText()).slice(1);
     const valentineBearQuantity = await this.valentineBearQuantity.inputValue();
     const valentineBearSubTotalCalculated =
       parseFloat(valentineBearPrice) * parseFloat(valentineBearQuantity);
