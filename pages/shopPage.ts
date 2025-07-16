@@ -16,7 +16,7 @@ export class ShopPage {
       .locator('#product-4')
       .getByRole('link', { name: 'Buy' });
     this.valentineBearProduct = page
-      .locator('#product-5')
+      .locator('#product-7')
       .getByRole('link', { name: 'Buy' });
     this.cartLink = page.getByRole('link', { name: 'Cart (10)' });
   }

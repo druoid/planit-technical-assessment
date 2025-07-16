@@ -7,7 +7,7 @@ export class CartPage {
   readonly valentineBearPrice: Locator;
   readonly stuffedFrogQuantity: Locator;
   readonly fluffyBunnyQuantity: Locator;
-  readonly valentineBearQuanity: Locator;
+  readonly valentineBearQuantity: Locator;
   readonly stuffedFrogSubTotal: Locator;
   readonly fluffyBunnySubTotal: Locator;
   readonly valentineBearSubTotal: Locator;
@@ -15,22 +15,16 @@ export class CartPage {
 
   constructor(page) {
     this.page = page;
-    this.stuffedFrogPrice = page.getByRole('cell', { name: '$10.99' });
-    this.fluffyBunnyPrice = page.getByRole('cell', { name: '$9.99' });
-    this.valentineBearPrice = page.getByRole('cell', { name: '$14.99' });
-    this.stuffedFrogQuantity = page
-      .getByRole('row', { name: 'Stuffed Frog $10.99 2 $' })
-      .getByRole('spinbutton');
-    this.fluffyBunnyQuantity = page
-      .getByRole('row', { name: 'Fluffy Bunny $9.99 5 $' })
-      .getByRole('spinbutton');
-    this.valentineBearQuanity = page
-      .getByRole('cell', { name: '3', exact: true })
-      .getByRole('spinbutton');
-    this.stuffedFrogSubTotal = page.getByRole('cell', { name: '$21.98' });
-    this.fluffyBunnySubTotal = page.getByRole('cell', { name: '$49.95' });
-    this.valentineBearSubTotal = page.getByRole('cell', { name: '$44.97' });
-    this.total = page.getByRole('strong');
+    this.stuffedFrogPrice = page.locator('//table//tr[1]/td[2]');
+    this.fluffyBunnyPrice = page.locator('//table//tr[2]/td[2]');
+    this.valentineBearPrice = page.locator('//table//tr[3]/td[2]')
+    this.stuffedFrogQuantity = page.locator('//table//tr[1]/td[3]/input');
+    this.fluffyBunnyQuantity = page.locator('//table//tr[2]/td[3]/input');
+    this.valentineBearQuantity = page.locator('//table//tr[3]/td[3]/input');
+    this.stuffedFrogSubTotal = page.locator('//table//tr[1]/td[4]');
+    this.fluffyBunnySubTotal = page.locator('//table//tr[2]/td[4]');
+    this.valentineBearSubTotal = page.locator('//table//tr[3]/td[4]');
+    this.total = page.locator('//table//tr[1]/td[1]').filter({ hasText: 'Total: 116.9'});
   }
 
   async verifySubtotalsAreCorrect() {
@@ -59,7 +53,7 @@ export class CartPage {
     const valentineBearPrice = (
       await this.valentineBearPrice.innerText()
     ).slice(1);
-    const valentineBearQuanity = await this.valentineBearQuanity.inputValue();
+    const valentineBearQuanity = await this.valentineBearQuantity.inputValue();
     const valentineBearSubTotal = (
       await this.valentineBearSubTotal.innerText()
     ).slice(1);
@@ -100,7 +94,7 @@ export class CartPage {
     const valentineBearPrice = (
       await this.valentineBearPrice.innerText()
     ).slice(1);
-    const valentineBearQuanity = await this.valentineBearQuanity.inputValue();
+    const valentineBearQuanity = await this.valentineBearQuantity.inputValue();
     const valentineBearSubTotalCalculated =
       parseFloat(valentineBearPrice) * parseFloat(valentineBearQuanity);
 
