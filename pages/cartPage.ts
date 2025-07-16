@@ -27,6 +27,7 @@ export class CartPage {
     this.total = page.locator('//table//tr[1]/td[1]').filter({ hasText: 'Total: 116.9' });
   }
 
+  // compares calculated subtotals based off rendered quality * price values with the rendered subtotal
   async verifySubtotalsAreCorrect() {
     const stuffedFrogPrice = (await this.stuffedFrogPrice.innerText()).slice(1);
     const stuffedFrogQuantity = await this.stuffedFrogQuantity.inputValue();
@@ -55,31 +56,21 @@ export class CartPage {
     await expect((await this.fluffyBunnyPrice.innerText()).slice(1)).toContain('9.99');
     await expect((await this.valentineBearPrice.innerText()).slice(1)).toContain('14.99');
   }
-
+  
+  // adds up rendered subtotals and compares with rendered total
   async verifyTotal() {
     const total = (await this.total.innerText()).slice(7);
 
     await expect(this.total).toContainText('Total: 116.9');
 
-    const stuffedFrogPrice = (await this.stuffedFrogPrice.innerText()).slice(1);
-    const stuffedFrogQuantity = await this.stuffedFrogQuantity.inputValue();
-    const stuffedFrogSubTotalCalculated =
-      parseFloat(stuffedFrogPrice) * parseFloat(stuffedFrogQuantity);
-
-    const fluffyBunnyPrice = (await this.fluffyBunnyPrice.innerText()).slice(1);
-    const fluffyBunnyQuantity = await this.fluffyBunnyQuantity.inputValue();
-    const fluffyBunnySubTotalCalculated =
-      parseFloat(fluffyBunnyPrice) * parseFloat(fluffyBunnyQuantity);
-
-    const valentineBearPrice = (await this.valentineBearPrice.innerText()).slice(1);
-    const valentineBearQuantity = await this.valentineBearQuantity.inputValue();
-    const valentineBearSubTotalCalculated =
-      parseFloat(valentineBearPrice) * parseFloat(valentineBearQuantity);
+    const stuffedFrogSubTotal = (await this.stuffedFrogSubTotal.innerText()).slice(1);
+    const fluffyBunnySubTotal = (await this.fluffyBunnySubTotal.innerText()).slice(1);
+    const valentineBearSubTotal = (await this.valentineBearSubTotal.innerText()).slice(1);
 
     const sumTotal =
-      parseFloat(stuffedFrogSubTotalCalculated.toString()) +
-      parseFloat(fluffyBunnySubTotalCalculated.toString()) +
-      parseFloat(valentineBearSubTotalCalculated.toString());
+      parseFloat(stuffedFrogSubTotal.toString()) +
+      parseFloat(fluffyBunnySubTotal.toString()) +
+      parseFloat(valentineBearSubTotal.toString());
 
     expect(total).toContain(sumTotal.toString());
 
