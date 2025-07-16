@@ -17,14 +17,16 @@ export class CartPage {
     this.page = page;
     this.stuffedFrogPrice = page.locator('//table//tr[1]/td[2]');
     this.fluffyBunnyPrice = page.locator('//table//tr[2]/td[2]');
-    this.valentineBearPrice = page.locator('//table//tr[3]/td[2]')
+    this.valentineBearPrice = page.locator('//table//tr[3]/td[2]');
     this.stuffedFrogQuantity = page.locator('//table//tr[1]/td[3]/input');
     this.fluffyBunnyQuantity = page.locator('//table//tr[2]/td[3]/input');
     this.valentineBearQuantity = page.locator('//table//tr[3]/td[3]/input');
     this.stuffedFrogSubTotal = page.locator('//table//tr[1]/td[4]');
     this.fluffyBunnySubTotal = page.locator('//table//tr[2]/td[4]');
     this.valentineBearSubTotal = page.locator('//table//tr[3]/td[4]');
-    this.total = page.locator('//table//tr[1]/td[1]').filter({ hasText: 'Total: 116.9'});
+    this.total = page
+      .locator('//table//tr[1]/td[1]')
+      .filter({ hasText: 'Total: 116.9' });
   }
 
   async verifySubtotalsAreCorrect() {
