@@ -53,12 +53,12 @@ export class CartPage {
     const valentineBearPrice = (
       await this.valentineBearPrice.innerText()
     ).slice(1);
-    const valentineBearQuanity = await this.valentineBearQuantity.inputValue();
+    const valentineBearQuantity = await this.valentineBearQuantity.inputValue();
     const valentineBearSubTotal = (
       await this.valentineBearSubTotal.innerText()
     ).slice(1);
     const valentineBearSubTotalCalculated =
-      parseFloat(valentineBearPrice) * parseFloat(valentineBearQuanity);
+      parseFloat(valentineBearPrice) * parseFloat(valentineBearQuantity);
     await expect(valentineBearSubTotal).toContain(
       valentineBearSubTotalCalculated.toString(),
     );
@@ -94,9 +94,9 @@ export class CartPage {
     const valentineBearPrice = (
       await this.valentineBearPrice.innerText()
     ).slice(1);
-    const valentineBearQuanity = await this.valentineBearQuantity.inputValue();
+    const valentineBearQuantity = await this.valentineBearQuantity.inputValue();
     const valentineBearSubTotalCalculated =
-      parseFloat(valentineBearPrice) * parseFloat(valentineBearQuanity);
+      parseFloat(valentineBearPrice) * parseFloat(valentineBearQuantity);
 
     const sumTotal =
       parseFloat(stuffedFrogSubTotalCalculated.toString()) +
