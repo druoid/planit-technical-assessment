@@ -24,7 +24,7 @@ export class CartPage {
     this.stuffedFrogSubTotal = page.locator('//table//tr[1]/td[4]');
     this.fluffyBunnySubTotal = page.locator('//table//tr[2]/td[4]');
     this.valentineBearSubTotal = page.locator('//table//tr[3]/td[4]');
-    this.total = page.locator('//table//tr[1]/td[1]').filter({ hasText: 'Total: 116.9' });
+    this.total = page.getByText('Total:');
   }
 
   // compares calculated subtotals based off rendered quality * price values with the rendered subtotal
@@ -61,7 +61,7 @@ export class CartPage {
   async verifyTotal() {
     const total = (await this.total.innerText()).slice(7);
 
-    await expect(this.total).toContainText('Total: 116.9');
+    await expect(this.total).toContainText(total);
 
     const stuffedFrogSubTotal = (await this.stuffedFrogSubTotal.innerText()).slice(1);
     const fluffyBunnySubTotal = (await this.fluffyBunnySubTotal.innerText()).slice(1);

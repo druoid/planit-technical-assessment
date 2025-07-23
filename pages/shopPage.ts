@@ -9,9 +9,9 @@ export class ShopPage {
 
   constructor(page) {
     this.page = page;
-    this.stuffedFrogProduct = page.locator('#product-2').getByRole('link', { name: 'Buy' });
-    this.fluffyBunnyProduct = page.locator('#product-4').getByRole('link', { name: 'Buy' });
-    this.valentineBearProduct = page.locator('#product-7').getByRole('link', { name: 'Buy' });
+    this.stuffedFrogProduct = page.locator('li.product').filter({ hasText: 'Stuffed Frog' }).getByRole('link', { name: 'Buy' });
+    this.fluffyBunnyProduct = page.locator('li.product').filter({ hasText: 'Fluffy Bunny' }).getByRole('link', { name: 'Buy' });
+    this.valentineBearProduct = page.locator('li.product').filter({ hasText: 'Valentine Bear' }).getByRole('link', { name: 'Buy' });
     this.cartLink = page.getByRole('link', { name: 'Cart (10)' });
   }
 
